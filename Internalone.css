@@ -1,0 +1,48 @@
+#external-paragraph{
+    color:blue;
+    background-color: aquamarine;
+
+}
+span {
+    color:brown;
+    background-color: bisque;
+
+}
+* span{
+    text-transform: capitalize;
+    text-decoration: wavy;
+    text-decoration-line: underline;
+    text-decoration-color: chartreuse;
+    text-decoration-thickness:5px ;
+}
+#create-link{
+    color:blue;
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+#pseudo:hover{
+    color: darkmagenta;
+
+}
+#pseudo:visited{
+    color: darkmagenta;
+
+}
+#pseudo:active{
+    color: darkmagenta;
+
+}
+#pseudo:link{
+    color: darkmagenta;
+}
+#box{
+    padding: 10px;
+    border-style: solid;
+    border-color: crimson;
+    margin: 10px;
+}
+body{
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUivbA53F8JUi_TaDlZRPm1VQAGVdNQ6lE0A&s");
+    background-size: cover;
+}
