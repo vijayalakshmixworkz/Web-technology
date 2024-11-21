@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>xworkz</title>
+    </head>
+    <body>
+        <form>
+            <span id="nameError"></span>
+            NAME<input  type ="text" onblur="handleValidate(event)"name="name"placeholder="Enter the name"/><br><br>
+            <span id="emailError"></span>
+            Email<input  type ="email"name="Email"onblur="handleValidate(event)"placeholder="Enter the email"/><br><br>
+            <span id="contactError"></span>
+            contact<input  type ="number"name="contact"onblur="handleValidate(event)"placeholder="Enter the contact number"/><br><br>
+            <span id="addressError"></span>
+            Address<input  type ="text"name="address"onblur="handleValidate(event)"placeholder="Enter the address"/><br><br>
+             <input type="submit" disabled id="isbutton" value="register"> <br>
+        </form>
+        <script>
+            let formData={};
+            const handleValidate=(event)=>{
+                const{name,value}=event.target
+                console.log(name+""+value)
+                if(name==="name"&&value.length<4&&value.trim()){
+                    console.log("name is invalid")
+                    document.getElementById("nameError").innerHTML="<span style='color:red'>name is invalid</span>"
+                }
+                else if(name==="name"&&value.length>4&&value.trim()){
+        
+                    document.getElementById("nameError").innerHTML=""
+                    return;
+                }
+                if(name==="contact"&&value.length<10){
+                    console.log("contact number is invalid")
+                    document.getElementById("contactError").innerHTML="<span style='color:red'>contact is invalid</span>"
+                }
+               else if(name==="contact"&&value.length===10){
+                    
+                    document.getElementById("contactError").innerHTML=""
+                    return;
+                }
+                if(name==="Email"&&value.trim()&&!value.includes("gmail.com")){
+                    console.log("email is invalid")
+                    document.getElementById("emailError").innerHTML="<span style='color:red'>email is invalid</span>"
+                }
+               else if(name==="Email"&&value.trim()&&value.includes("gmail.com")){
+                    
+                    document.getElementById("emailError").innerHTML=""
+                    return;
+                }
+                if(name==="address"&&value.length<4&&value.trim()){
+                    console.log("address is invalid")
+                    document.getElementById("addressError").innerHTML="<span style='color:red'>address is invalid</span>"
+                }
+                else if(name==="address"&&value.length>4&&value.trim()){
+        
+                    document.getElementById("addressError").innerHTML=""
+                    return;
+                }
+                formData={
+                    ...formData,[name]:value
+                }
+                console.log(formData);
+                let button=document.getElementById("isbutton");
+                if(formData.name.length>4&&formData.contact.length===10&&formData.Email.includes("gmail.com")&&formData.address.length>4){
+                
+                button.removeAttribute("disabled")
+            }
+            else{
+                button.setAttribute("disabled","")
+            
+            }
+        }
+        </script>
+    </body>
+</html> 

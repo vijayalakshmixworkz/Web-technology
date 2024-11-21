@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <span id="nameError" class="error"></span>
+        NAME: <input type="text" onblur="handleValidate(event)" name="name" placeholder="Enter the name"/><br><br>
+        <span id="emailError" class="error"></span>
+        Email: <input type="email" name="Email" onblur="handleValidate(event)" placeholder="Enter the email"/><br><br>
+        <span id="passwordError" class="error"></span>
+        Password: <input type="number" name="password" onblur="handleValidate(event)" placeholder="Enter the password"/><br><br>
+        <span id="cpasswordError" class="error"></span>
+        Confirm Password: <input type="text" name="confirmPassword" onblur="handleValidate(event)" placeholder="Confirm password"/><br><br>
+        <input type="submit" disabled id="isbutton" value="Register"><br>
+    </form>
+    <script>
+        let formData = {
+            name: "",
+            Email: "",
+            password: "",
+            confirmPassword: ""
+        };
+
+        const handleValidate = (event) => {
+            const { name, value } = event.target;
+
+            // Validation flags
+            let isValid = true;
+
+            // Name validation
+            if (name === "name" && (value.length < 4 || !value.trim())) {
+                document.getElementById("nameError").innerHTML = "Name is invalid";
+                isValid = false;
+            } else if (name === "name" && value.length >= 4 && value.trim()) {
+                document.getElementById("nameError").innerHTML = "";
+            }
+
+            // Email validation
+            if (name === "Email" && (!value.trim() || !value.includes("gmail.com"))) {
+                document.getElementById("emailError").innerHTML = "Email is invalid";
+                isValid = false;
+            } else if (name === "Email" && value.trim() && value.includes("gmail.com")) {
+                document.getElementById("emailError").innerHTML = "";
+            }
+
+            // Password validation
+            if (name === "password" && value.length < 6) {
+                document.getElementById("passwordError").innerHTML = "Password should have 6 characters";
+                isValid = false;
+            } else if (name === "password" && value.length === 6) {
+                document.getElementById("passwordError").innerHTML = "";
+            }
+
+            // Confirm password validation
+            if (name === "confirmPassword" && (value.length < 6 || value !== formData.password)) {
+                document.getElementById("cpasswordError").innerHTML = "Confirm password is invalid";
+                isValid = false;
+            } else if (name === "confirmPassword" && value.length === 6 && value === formData.password) {
+                document.getElementById("cpasswordError").innerHTML = "";
+            }
+
+            // Update formData
+            formData = {
+                ...formData,
+                [name]: value
+            };
+
+            // Enable or disable the button based on validation
+            const button = document.getElementById("isbutton");
+            if (
+                formData.name.length >= 4 &&
+                formData.Email.includes("gmail.com") &&
+                formData.password.length === 6 &&
+                formData.confirmPassword === formData.password
+            ) {
+                button.removeAttribute("disabled");
+            } else {
+                button.setAttribute("disabled", "");
+            }
+        };
+    </script>
+</body>
+</html>

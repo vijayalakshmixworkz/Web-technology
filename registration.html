@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <span id="nameError"></span>
+        NAME<input  type ="text" onblur="handleValidate(event)"name="name"placeholder="Enter the name"/><br><br>
+        <span id="emailError"></span>
+        Email<input  type ="email"name="Email"onblur="handleValidate(event)"placeholder="Enter the email"/><br><br>
+        <span id="passwordError"></span>
+        password<input  type ="number"name="password"onblur="handleValidate(event)"placeholder="Enter the password"/><br><br>
+        <span id="cpasswordError"></span>
+       confirm password<input  type ="text"name="confirmPassword"onblur="handleValidate(event)"placeholder="confirm password"/><br><br>
+         <input type="submit" disabled id="isbutton" value="register"> <br>
+    </form>
+    <script>
+        let formData={};
+        const handleValidate=(event)=>{
+            const{name,value}=event.target
+            console.log(name+""+value)
+            if(name==="name"&&value.length<4&&value.trim()){
+                console.log("name is invalid")
+                document.getElementById("nameError").innerHTML="<span style='color:red'>name is invalid</span>"
+            }
+            else if(name==="name"&&value.length>4&&value.trim()){
+    
+                document.getElementById("nameError").innerHTML=""
+                return;
+            }
+            
+            if(name==="Email"&&value.trim()&&!value.includes("gmail.com")){
+                console.log("email is invalid")
+                document.getElementById("emailError").innerHTML="<span style='color:red'>email is invalid</span>"
+            }
+           else if(name==="Email"&&value.trim()&&value.includes("gmail.com")){
+                
+                document.getElementById("emailError").innerHTML=""
+                return;
+            }if(name==="password"&&value.length<6){
+                console.log("password is invalid")
+                document.getElementById("passwordError").innerHTML="<span style='color:red'>password should have 6 letters</span>"
+            }
+           else if(name==="password"&&value.length===6){
+                
+                document.getElementById("passwordError").innerHTML=""
+                return;
+            }
+            if(name==="confirmPassword"&&value.length<6){
+                console.log("confirmPassword is invalid")
+                document.getElementById("cpasswordError").innerHTML="<span style='color:red'>confirmPassword is invalid</span>"
+            }
+            else if(name==="confirmPassword"&&value.length===6){
+    
+                document.getElementById("cpasswordError").innerHTML=""
+                return;
+            }
+            formData={
+                ...formData,[name]:value
+            }
+            console.log(formData);
+            let button=document.getElementById("isbutton");
+            if(formData.name.length>4&&formData.password.length===6&&formData.Email.includes("gmail.com")&&formData.confirmPassword.length===6){
+            
+            button.removeAttribute("disabled")
+        }
+        else{
+            button.setAttribute("disabled","")
+        
+        }
+    }
+    </script>
+</body>
+</html>

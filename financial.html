@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>your bank</title>
+    <h1>your bank</h1>
+    <h1>logo</h1>
+    <h1>FINANCIAL CONSULTATION REGISTRATION FORM</h1>
+</head>
+<body>
+    <form>
+        <span id="fError"></span>
+        Name<br><input type="text" name="firstname"placeholder="enter the first name"onblur="handleValidate(event)"><br><br>
+        <span id="lError"></span>
+        Name<br><input type="text" name="lastname"placeholder="enter the  lastname"onblur="handleValidate(event)"><br><br>
+        <span id="phoneError"></span>
+        Phone Number<br><input type="number" name="phonenumber"placeholder="enter the  phone number"onblur="handleValidate(event)"><br><br>
+        <span id="emailError"></span>
+        Email Address<br><input type="email" name="email"placeholder="enter the email"onblur="handleValidate(event)"><br><br>
+        <span id="bisinessError"></span>
+       Business Name<br><input type="text" name="Business name"placeholder="enter theBusiness name"onblur="handleValidate(event)"><br><br>
+       <span id="msgError"></span>
+       Message<br><input type="text" name="message"placeholder="enter the message"onblur="handleValidate(event)"><br><br>
+       verification*<br><input type="checkbox">i'm not a robot<br><br>
+       <input type="submit" value="submit form" disabled id="isbutton">
+    </form>
+    <script>
+        const handleValidate=(event)=>{
+        const {name,value}=event.target
+        console.log(name+""+value)
+        if(name==="firstname"&&value.length<3&&value.trim()){
+            console.log("name is invalid")
+            document.getElementById("fError").innerHTML="<span style= 'color:red'>invalid</span>"
+        }
+        else  if(name==="firstname"&&value.length>3&&value.trim()){
+            console.log("name is valid")
+            document.getElementById("fError").innerHTML=""
+        }
+        if(name==="lastname"&&value.length<3&&value.trim()){
+            console.log("name is invalid")
+            document.getElementById("lError").innerHTML="<span style= 'color:red'>invalid</span>"
+        }
+        else  if(name==="lastname"&&value.length>3&&value.trim()){
+            console.log("name is valid")
+            document.getElementById("lError").innerHTML=""
+        }
+        if(name==="phonenumber"&&value.length<10){
+            console.log("phone number must contain 10 digits")
+            document.getElementById("phoneError").innerHTML="<span style='color:red'>invalid</span>"
+
+        }
+        else if(name==="phonenumber"&&value.length===10){
+            console.log("valid")
+            document.getElementById("phoneError").innerHTML=""
+
+        }
+        if(name==="email"&&value.length<3&&!value.includes("gmail.com")){
+            console.log("email invalid")
+            document.getElementById("emailError").innerHTML="<span style 'color:red'>invalid</span>"
+        }
+        else if(name==="email"&&value.length>3&&value.includes("gmail.com")){
+            console.log("email is valid")
+            document.getElementById("emailError").innerHTML=""
+        }
+        
+        }
+    </script>
+</body>
+</html>

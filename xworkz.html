@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        h1 {
+            color: #343a40;
+        }
+        p {
+            line-height: 1.6;
+            color: #6c757d;
+        }
+        .contact-form {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .contact-form button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .contact-form button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to X-Workz</h1>
+    </div>
+    <div class="content">
+        <h2>About Us</h2>
+        <p>X-Workz is dedicated to providing high-quality training and development programs designed to help individuals reach their professional goals. Our team of expert instructors ensures that every session is engaging, informative, and valuable.</p>
+        <p>Join us to learn the latest technologies and advance your career with industry-relevant skills.</p>
+
+        <div class="contact-form">
+            <h3>Contact Us</h3>
+            <form id="contactForm" action="#" method="post">
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <div id="nameError" class="error"></div>
+                
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <div id="emailError" class="error"></div>
+                
+                <textarea id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                <div id="messageError" class="error"></div>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            let isValid = true;
+
+            
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('messageError').textContent = '';
+
+            
+            const name = document.getElementById('name').value;
+            if (!/^[a-zA-Z\s]+$/.test(name)) {
+                document.getElementById('nameError').textContent = 'Name must contain only letters and spaces.';
+                isValid = false;
+            }
+
+            
+            const email = document.getElementById('email').value;
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid
